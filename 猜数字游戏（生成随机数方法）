@@ -1,0 +1,62 @@
+#define _CRT_SECURE_NO_WARNINGS
+//猜数字游戏
+//1.电脑会生成一个随机的数字
+//2.猜数字
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+void menu()
+{
+	printf("###############################\n");
+	printf("####1.开始游戏   0.结束游戏####\n");
+	printf("###############################\n");
+}
+void game()
+{
+	int ret = 0;//接收生成的随机数字
+	int guess = 0;//接收猜的数字
+	ret = rand()%100+1;//为了使游戏体验感更好，生成的数字为1到100这个区间
+	while(1)
+	{
+		scanf("%d", &guess);
+		if (guess > ret)
+		{
+			printf("猜大了\n");
+		}
+	    else if (guess < ret)
+		{
+			printf("猜小了\n");
+		}
+		else
+		{
+			printf("猜中了\n");
+			break;
+		}
+	}
+	return 0;
+}
+int main()
+{
+	int input = 0;
+	srand((unsigned int)time(NULL));//为了使生成的数随机，在每次调用rand函数
+	                                //前定义srand函数，从而实现正在意义上的随机
+	do//使用do-while循环，实现游戏的重复进行
+	{	
+		menu();//定义一个函数，来输出一个简单的界面
+		printf("请输入：");
+		scanf("%d", &input);
+		switch (input)
+		{
+		case 1:
+			game();
+			break;
+		case 0:
+			printf("游戏结束\n");
+			break;
+		default:
+			printf("输入错误\n");
+			break;
+		}
+	} while (input);//当输入为1时游戏继续，为0时游戏结束
+	return 0;
+}
